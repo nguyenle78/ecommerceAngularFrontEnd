@@ -1,0 +1,55 @@
+<div class="main-content" style="margin-left: 1%">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+
+            <div *ngIf="cartItems.length >0">
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="15%">Product Image</th>
+                        <th width="70%">Product description</th>
+                        <th width="15%">Details</th>
+                    </tr>
+                    <tr *ngFor="let cartItem of cartItems ">
+                        <td>
+                            <img src="{{cartItem.imageUrl}}" alt="Product image" class="image-responsive" width="200px">
+                        </td>
+                        <td>
+                            <p>{{cartItem.description}}</p>
+                            <p>Price: {{cartItem.unitPrice| currency: 'EUR'}}</p>
+                        </td>
+                        <td>
+                            <label>Quantity: </label>
+                            <div class="btn-group-vertical" role="group">
+                                <button (click)="incrementCartItem(cartItem)" class="fa-solid fa-plus"></button>
+                                {{cartItem.quantity}}
+                                <button (click)=" decrementCartItem(cartItem)" class="fa-solid fa-minus"></button>
+                            </div>
+                            <div>
+                                <label>Subtotal: </label>
+                                {{cartItem.quantity*cartItem.unitPrice| currency:'EUR'}}
+                                <button (click)="removeFromCart(cartItem)" class="btn btn-danger">REMOVE</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td colspan="2">
+
+                        </td>
+                        <td style="font-weight: bolder">
+                            <p>Total items: {{totalQuantity}}</p>
+                            <p>Total Price: {{totalPrice.toFixed(4)| currency:'EUR'}}</p>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <!-- if cart empty, display this -->
+            <div *ngIf="cartItems.length == 0" class="alert alert-warning cold-md-12" role="alert">
+                Yo, Cart is empty!!
+            </div>
+
+        </div>
+    </div>
+</div>

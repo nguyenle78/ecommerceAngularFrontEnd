@@ -1,0 +1,65 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- loop over collection of products-->
+                <div *ngFor="let product of products" class=" col-md-3">
+                    <div class="product-box">
+
+                        <!-- add link to Product List-->
+                        <a routerLink="/products/{{product.id}}" class="text-decoration-none">
+                            <img src="{{product.imageUrl}}" alt="Product image" class="img-responsive">
+                            <h1>{{product.name}}</h1>
+                        </a>
+                        <div class="price">{{product.unitPrice | currency: 'EUR'}}</div>
+                        <button (click)="addToCart(product)" class="custom-button" >Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- If theres no earch result, then display this message-->
+                <div *ngIf="products?.length == 0" class="alert alert-danger col-md-8" role="aler">
+                    No product found
+                </div>
+            </div>
+            <!-- begin footer -->
+            <div class="footer-pagination">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-3 mt-1" style="text-align: center;">
+                                <label for="pageSiseSelector">Items/Page: </label>
+                                <!--new in Angular, $event.target.value doesnt work
+                                    Solution: cast to any type
+                                    <select (change)="updatePageSize($any($event.target).value)">
+                                    or use ngModel 
+                                    <select [ngModel]="pageSize" name="pageSizeSelector" 
+                                    (ngModelChange)="updatePageSize($event)" 
+                                -->
+                                <select [ngModel]="pageSize" (ngModelChange)="updatePageSize($event)" class="col-md-4">
+                                    <option>3</option>
+                                    <option selected="true">5</option>
+                                    <option >10</option>
+                                    <option>15</option>
+                                    <option>20</option>
+                                </select>
+
+                            </div>
+                            <div class="col-md-9" style="padding-left: 5%;">
+                                <!-- boundary link to create jump to last/fisrt button :) -->
+                                <ngb-pagination [(page)]="pageNumber" 
+                                                [pageSize]="pageSize"
+                                                [collectionSize]="totalElements" 
+                                                (pageChange)="listProduct()"
+                                                [maxSize]="4"
+                                                [boundaryLinks]="true">
+                                </ngb-pagination>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end footer -->
+        </div>
+    </div>
+</div>

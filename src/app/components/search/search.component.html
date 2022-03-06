@@ -1,0 +1,7 @@
+<div class="form-header">
+    <input #mySearch type="text" class="au-input-xl" placeholder="Search for products ..."
+        (keyup.enter)="doSearch(mySearch.value)" ngModel required />
+    <button (click)="doSearch(mySearch.value)" class="au-btn-submit" [disabled]="mySearch.value === '' ">
+        Search
+    </button>
+</div>

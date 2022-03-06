@@ -1,0 +1,28 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <h2 style="text-align: center;">Welcome, here's our sample product: </h2>
+            <div class="row">
+                <!-- loop over collection of products-->
+                <div *ngFor="let product of products" class=" col-md-3">
+                    <div class="product-box">
+
+                        <!-- add link to Product List-->
+                        <a routerLink="/products/{{product.id}}" class="text-decoration-none">
+                            <img src="{{product.imageUrl}}" alt="Product image" class="img-responsive"
+                                style="position: relative;">
+                            <h1>{{product.name}}</h1>
+                        </a>
+                        <div class="price">{{product.unitPrice | currency: 'EUR'}}</div>
+                        <button (click)="addToCart(product)" class="custom-button">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- If theres no earch result, then display this message-->
+                <div *ngIf="products?.length == 0" class="alert alert-danger col-md-8" role="aler">
+                    No product found
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
