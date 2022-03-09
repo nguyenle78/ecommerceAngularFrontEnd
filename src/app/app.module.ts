@@ -1,4 +1,3 @@
-
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
@@ -11,16 +10,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailComponent } from './components/cart-detail/cart-detail.component';
-
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 // Define routes
 const routes: Routes = [
   //
-  { path: 'cart-detail', component: CartDetailComponent},
+  { path: 'cart-detail', component: CartDetailComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'search/:keyword', component: ProductListComponent },
   { path: 'category/:id', component: ProductListComponent },
@@ -40,6 +40,7 @@ const routes: Routes = [
     WelcomePageComponent,
     CartStatusComponent,
     CartDetailComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
-    NgbModule
+    ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [ProductService],
   bootstrap: [AppComponent],

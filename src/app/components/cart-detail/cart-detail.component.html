@@ -33,14 +33,17 @@
                         </td>
                     </tr>
                     <tr>
-
                         <td colspan="2">
-
                         </td>
                         <td style="font-weight: bolder">
                             <p>Total items: {{totalQuantity}}</p>
                             <p>Total Price: {{totalPrice.toFixed(4)| currency:'EUR'}}</p>
                         </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                        </td>
+                        <a routerLink="/checkout" class="btn btn-success" style="text-decoration: none;">Checkout</a>
                     </tr>
                 </table>
 

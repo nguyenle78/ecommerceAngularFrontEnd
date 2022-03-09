@@ -1,0 +1,226 @@
+<div class="main-content page-m">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+
+            <!-- bind this form with event-->
+            <form [formGroup]="checkoutFormGroup" (ngSubmit)="onProceed()">
+
+                <!-- customer formGroup -->
+                <div formGroupName="customer" class="form-area">
+                    <h3>Customer</h3>
+                    <div class="row">
+                        <div class="col-md-2" style="display: table-cell;"> <label>First Name</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="firstName" placeholder="First name....">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2" style="vertical-align: middle;"> <label>Last Name</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="lastName" placeholder="Last name....">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"> <label>Email</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="email" placeholder="Email adress....">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Shipping Adress Form Group -->
+                <div formGroupName="deliveryAddress" class="form-area">
+                    <h3> Shipping Address</h3>
+                    <div class="row">
+                        <div class="col-md-2"> <label>Address</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="address" placeholder="Adress...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"> <label>PLZ</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="zipCode" placeholder="PLZ...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"> <label>Country</label></div>
+                        <div class="col-md-5">
+                            <div class="input-space">
+                                <select formControlName-="country">
+                                    <option>
+                                        !TO DO
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"> <label>City</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="city" placeholder="City...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Billing Adress Form Group -->
+                <div formGroupName="billingAddress" class="form-area">
+                    <h3> Billing Address</h3>
+                    <div class="row">
+                        <div class="col-md-2"> <label>Address</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="address" placeholder="Adress...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"> <label>PLZ</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="zipCode" placeholder="PLZ...">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"> <label>Country</label></div>
+                            <div class="col-md-5">
+                                <div class="input-space">
+                                    <select formControlName-="country">
+                                        <option>
+                                            !TO DO
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"> <label>City</label></div>
+                        <div class="col-md-10">
+                            <div class="input-space">
+                                <input type="text" formControlName="city" placeholder="City...">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- add check box to copy shipping to billing address-->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="check" id="flexCheckDefault"
+                            (change)="copyShippingToBillingAddress($event)">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Billing address same as shipping address
+                        </label>
+                    </div>
+                </div>
+
+                <!--Credit Card Form group-->
+                <div formGroupName="creditCard" class="form-area">
+                    <h3> Credit card details</h3>
+                    <div class="row">
+                        <div class="col-md-3"> <label>Type</label></div>
+                        <div class="col-md-4">
+                            <div class="input-space">
+                                <select formControlName-="cardType">
+                                    <option>
+                                        VISA
+                                    </option>
+                                    <option>
+                                        MASTER CARD
+                                    </option>
+                                    <option>
+                                        AMERICA EXPRESS
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"> <label>Card Number</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input type="text" formControlName="cardNumber" placeholder="Card number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"> <label>Card holder</label></div>
+                        <div class="col-md-9">
+                            <div class="input-space">
+                                <input type="text" formControlName="cardHolder" placeholder="Name on Card...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"> <label>Expire Date</label></div>
+                        <div class="col-md-1">
+                            <span>Month: </span>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-space">
+                                <select [(ngModel)]="selectedMonth" formControlName-="expireMonth">
+                                    <option *ngFor="let month of creditCardMonths">{{month}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <span>Year: </span>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-space">
+                                <select [(ngModel)]="selectedYear" formControlName-="expireYear" (change)="handleYearChange()">
+                                    <option *ngFor="let year of creditCardYears">{{year}}</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"> <label>CCV</label></div>
+                        <div class="col-md-3">
+                            <div class="input-space">
+                                <input type="text" formControlName="ccv" placeholder="CCV number...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Order Details-->
+                <div class="form-area">
+                    <h3> Review your order</h3>
+                    <p>Total quantity: {{totalQuantity}}</p>
+                    <p>Total price: {{totalPrice| currency: 'EUR'}}</p>
+                </div>
+
+                <!-- back/submit button -->
+                <div>
+                    <table>
+                        <th width="65%"></th>
+                        <th width="25%">
+                            <div>
+                                <button routerLink="/cart-detail" class="btn btn-danger">Back to Cart</button>
+                            </div>
+                        </th>
+                        <th width="10%">
+                            <div class="col-md-2">
+                                <button (click)="onProceed()" class="btn btn-info">Proceed</button>
+                            </div>
+                        </th>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

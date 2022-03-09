@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   searchByIdMode: boolean = false;
   //  properties for pagination
   pageNumber: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 8;
   totalElements: number = 0;
 
   previsouKeyword: string = null;
@@ -66,13 +66,11 @@ export class ProductListComponent implements OnInit {
   */
   handleSearchProductPaginate() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword');
-    console.log(`previousKeyword: ` + this.previsouKeyword);
     //  if we have different keyword than previous, then set pageNUmber to 1
     if (this.previsouKeyword != theKeyword) {
       this.pageNumber = 1;
     }
     this.previsouKeyword = theKeyword;
-    console.log(`keyword: ` + theKeyword);
 
     this.productService
       .searchProductPaginate(theKeyword, this.pageNumber - 1, this.pageSize)
@@ -134,7 +132,7 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product: Product) {
     const cartItem = new CartItem(product);
-    console.log("debug");
+    console.log('debug');
     this.cartService.addToCart(cartItem);
   }
 }
