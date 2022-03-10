@@ -14,7 +14,10 @@ export class ProductService {
   //  Landingpage Url, has randomized products
   private ourproductsUrl = 'http://localhost:8080/api/our-products';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    // inject httpClient to use http methods
+    private httpClient: HttpClient
+  ) {}
   getAllProduct(): Observable<Product[]> {
     return this.httpClient
       .get<GetResponseProduct>(this.baseUrl)
@@ -48,12 +51,13 @@ export class ProductService {
 
   // search product with pagination support
   searchProductPaginate(
-    keyword:string,
+    keyword: string,
     page: number,
-    pageSize: number,
+    pageSize: number
   ): Observable<GetResponseProduct> {
     //  build url based on categoryId
-    const searchUrl =`${this.baseUrl}/search/findByNameContaining?name=${keyword}`+
+    const searchUrl =
+      `${this.baseUrl}/search/findByNameContaining?name=${keyword}` +
       `&page=${page}&size=${pageSize}`;
     return this.httpClient.get<GetResponseProduct>(searchUrl);
   }
